@@ -11,7 +11,7 @@
   - ohmyzsh
   - aws
   - desktop
-  # - rust
+  - rust
   # - shell_enhancements
   # - gitconfig
   # - end
