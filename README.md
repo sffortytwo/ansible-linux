@@ -41,3 +41,7 @@ The oh-my-zsh shell environment.
 ### aws
 
 Support for AWS CLI.
+
+### desktop
+
+Adjustments to various GUI appl (e.g. Gnome Terminal)

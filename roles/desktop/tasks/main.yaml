@@ -1,0 +1,22 @@
+- name: vars
+  include_vars:
+    file: vars/{{ ansible_distribution|lower }}.yaml
+    name: var
+
+# ------------------------------------------------------------------------------
+# Gnome desktop
+# ------------------------------------------------------------------------------
+- name: Stat
+  stat:
+    path: /usr/share/xsessions/gnome.desktop
+  register: gnomedesktop
+
+- name: Stat
+  stat:
+    path: /usr/share/xsessions/ubuntu.desktop
+  register: ubuntudesktop
+
+- name: dconf for Gnome
+  include_tasks: dconf-gnome.yaml
+  when: 'gnomedesktop.stat.exists == True or ubuntudesktop.stat.exists == True'
+# ------------------------------------------------------------------------------

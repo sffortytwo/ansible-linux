@@ -10,7 +10,7 @@
   - wsl2
   - ohmyzsh
   - aws
-  # - desktop
+  - desktop
   # - rust
   # - shell_enhancements
   # - gitconfig
