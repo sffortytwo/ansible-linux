@@ -49,3 +49,7 @@ Adjustments to various GUI appl (e.g. Gnome Terminal)
 ### rust
 
 Support for the Rust language (also needed for `shell_enhancements`)
+
+### shell_enhancements
+
+Rust-based shell enhancements.

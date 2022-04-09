@@ -12,6 +12,6 @@
   - aws
   - desktop
   - rust
-  # - shell_enhancements
+  - shell_enhancements
   # - gitconfig
   # - end

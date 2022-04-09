@@ -1,0 +1,3 @@
+# Exa
+alias ls='exa'
+alias ll='exa -laF --icons --git'
