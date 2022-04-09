@@ -37,3 +37,7 @@ WSL2 support files.
 ### ohmyzsh
 
 The oh-my-zsh shell environment.
+
+### aws
+
+Support for AWS CLI.

@@ -1,0 +1,4 @@
+- name: AWS CLI
+  package:
+    name: awscli
+    state: present

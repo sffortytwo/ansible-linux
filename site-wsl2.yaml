@@ -9,7 +9,7 @@
   - fonts
   - wsl2
   - ohmyzsh
-  # - aws
+  - aws
   # - desktop
   # - rust
   # - shell_enhancements
