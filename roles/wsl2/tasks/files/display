@@ -1,0 +1,1 @@
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | cut -d' ' -f2):0.0

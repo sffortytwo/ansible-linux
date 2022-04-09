@@ -1,0 +1,4 @@
+wsl_vpnkit="$(wsl.exe -l -v | grep --text 'v.p.n.k.i.t.*R.u.n.n.i.n.g')"
+if [ -z "${wsl_vpnkit:-}" ] ; then
+    wsl.exe -d wsl-vpnkit service wsl-vpnkit start
+fi
