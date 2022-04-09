@@ -25,3 +25,7 @@ Various OS packages.
 ### shell
 
 Basic shell setup.
+
+### fonts
+
+Fonts for use by different programs.

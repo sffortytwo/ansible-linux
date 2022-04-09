@@ -6,7 +6,7 @@
   - begin
   - packages
   - shell
-  # - fonts
+  - fonts
   # - wsl2
   # - ohmyzsh
   # - aws
