@@ -1,0 +1,68 @@
+# ##############################################################################
+# Backup the path for future iterations
+# ##############################################################################
+if [ -z "${BACKUP_PATH}" ]; then
+	BACKUP_PATH=$PATH
+fi
+
+# Reset so we can build the PATH up again
+PATH=$BACKUP_PATH
+
+
+# ##############################################################################
+# Begin
+# ##############################################################################
+
+{% for key,lines in pathvar.items() %}
+# ------------------------------------------------------------------------------
+# {{ key }}
+# ------------------------------------------------------------------------------
+{% for line in lines %}
+{{ line }}
+{% endfor %}
+# ------------------------------------------------------------------------------
+
+{% endfor %}
+
+# ##############################################################################
+# End
+# ##############################################################################
+
+export PATH
+
+if [ -f $HOME/.extra_paths ]; then
+    source $HOME/.extra_paths
+fi
+
+# ##############################################################################
+# Ensure the PATH only has unique elements
+# ##############################################################################
+PATH_ELEMENTS=()
+echo $PATH | tr ':' '\n' | while read pe; do PATH_ELEMENTS+=($pe); done
+
+UNIQUE_ELEMENTS=()
+
+for pe in "${PATH_ELEMENTS[@]}"; do
+	unique=0
+	for i in "${UNIQUE_ELEMENTS[@]}"; do
+		if [ "$pe" = "$i" ]; then
+			unique=1
+		fi
+	done
+
+	if [ $unique -eq 0 ]; then
+		UNIQUE_ELEMENTS+=($pe)
+	fi
+done
+
+function join_by {
+	local IFS=":"
+	echo "$*"
+}
+
+NEW_PATH=$(join_by "${UNIQUE_ELEMENTS[@]}")
+
+PATH="$NEW_PATH"
+unset PATH_ELEMENTS
+unset UNIQUE_ELEMENTS
+unset NEW_PATH

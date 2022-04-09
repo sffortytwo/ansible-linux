@@ -1,0 +1,17 @@
+- hosts: [wsl2]
+  remote_user: jeff
+  become: yes
+  connection: local
+  roles:
+  - begin
+  # - packages
+  # - shell
+  # - fonts
+  # - wsl2
+  # - ohmyzsh
+  # - aws
+  # - desktop
+  # - rust
+  # - shell_enhancements
+  # - gitconfig
+  # - end
