@@ -1,0 +1,5 @@
+packages:
+- 'fonts-powerline'
+- 'ttf-ancient-fonts'
+- 'zsh'
+- 'git'

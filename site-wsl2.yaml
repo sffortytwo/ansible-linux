@@ -8,7 +8,7 @@
   - shell
   - fonts
   - wsl2
-  # - ohmyzsh
+  - ohmyzsh
   # - aws
   # - desktop
   # - rust

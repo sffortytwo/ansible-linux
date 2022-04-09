@@ -29,3 +29,11 @@ Basic shell setup.
 ### fonts
 
 Fonts for use by different programs.
+
+### wsl2
+
+WSL2 support files.
+
+### ohmyzsh
+
+The oh-my-zsh shell environment.
