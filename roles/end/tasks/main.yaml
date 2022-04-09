@@ -1,4 +1,4 @@
-- name: paths
+- name: Set up paths
   template:
     src: templates/sh_paths.j2
     dest: "{{ homedir }}/.sh_paths"
