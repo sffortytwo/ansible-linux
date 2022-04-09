@@ -1,0 +1,90 @@
+# https://unix.stackexchange.com/questions/3773/how-to-pass-parameters-to-an-alias
+
+alias l='ls -FG1'
+alias la='ls -FGa1'
+alias ll='ls -FGal'
+alias lla='ls -FGal'
+alias screen='screen -e^Za'
+alias vm='VBoxManage'
+
+alias vup='vagrant up'
+alias vs='vagrant status | egrep --color=auto "running|$"'
+alias vgs='vagrant global-status | egrep --color=auto "running|$"'
+alias vsh='vagrant ssh'
+alias vp='vagrant provision'
+
+# General
+{% if ansible_distribution == 'MacOSX' %}
+alias meld='open -n -a Meld' # Only if the OS is MacOS
+{% endif %}
+alias yd='youtube-dl --output "%(title)s.%(ext)s"'
+alias youtube-dl='youtube-dl --output "%(title)s.%(ext)s"'
+alias marked='open -a Marked'
+alias rider='open -a Rider'
+alias sqlpro='open -a SQLPro\ for\ SQLite.app'
+alias typora='open -a Typora'
+alias info-pip-freeze='pip freeze > requirements.txt'
+alias info-pip-install='pip install -r requirements.txt'
+
+if [ -d $HOME/.bookmarks ]; then
+  export CDPATH=".:$HOME/.bookmarks:/"
+  alias goto="cd -P"
+fi
+
+# Docker
+alias di='docker images | (read l; echo "$l"; sort) | egrep "local/[^ ]+|$"'
+
+# Flutter
+alias info-flutter-ios-simulator='open -a Simulator'
+
+# Git
+alias info-git-refresh-remote-branches='git remote update origin --prune'
+alias info-git-list-remote-tags-origin='git ls-remote --tags origin'
+alias info-git-remove-branch-protection='gh api -X DELETE repos/:owner/:repo/branches/:branch/protection/enforce_admins'
+#info-git-remove-branch-protection() {
+#  local ORG=RoyalAholdDelhaize
+#  local REPO=$(git config --get remote.origin.url | sed 's#^.*/\(.*\)\.git#\1#')
+#  gh api -X DELETE "repos/${ORG}/${REPO}/branches/master/protection/enforce_admins" >/dev/null 2>&1
+#}
+# Tagging
+alias info-git-tag-add='f(){ if [ $# != 2 ]; then echo "Usage: info-git-tag-add COMMENT TAG"; else git tag -a -m "$1" "$2"; fi; unset -f f; }; f'
+alias info-git-signed-tag-add='f(){ if [ $# != 2 ]; then echo "Usage: info-git-signed-tag-add COMMENT TAG"; else git tag -s -m "$1" "$2"; fi; unset -f f; }; f'
+alias info-git-tag-show='git show'
+alias info-git-tag-push='git push --follow-tags'
+alias info-git-tag-delete='git tag -d'
+alias info-git-tag-delete-push='f(){ git push origin :refs/tags/$1; unset -f f; }; f'
+info-git-commits-for-branch() {
+    if [ $# -gt 2 ] || [ "$1" = "--help" ]; then
+      echo "usage: $0 [BRANCH] [--pretty]"
+      return 1
+    fi
+
+    BRANCH=$(git branch | grep '*' | sed 's/^..//' )
+    PRETTY=NO
+
+    while ([ $# -gt 0 ]); do
+        if [ "$1" = "--pretty" ]; then
+          PRETTY=YES
+        else
+          BRANCH="$1"
+        fi
+        shift
+    done
+
+    if [ "$PRETTY" = "YES" ]; then
+      git log --name-status "$BRANCH" --not $(git for-each-ref --format='%(refname)' refs/heads/ | grep -v "refs/heads/$BRANCH")
+    else
+      git log "$BRANCH" --not $(git for-each-ref --format='%(refname)' refs/heads/ | grep -v "refs/heads/$BRANCH")
+    fi
+}
+
+# Kubernetes
+alias kc='kubectl'
+
+# Virtualenv
+alias info-virtualenv-install='virtualenv venv'
+alias info-virtualenv-source='source venv/bin/activate'
+
+if [ -d $HOME/.extra_aliases ]; then
+  find $HOME/.extra_aliases -type f | while read fn; do source $fn; done
+fi

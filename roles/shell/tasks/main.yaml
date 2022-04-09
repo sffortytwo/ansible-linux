@@ -1,0 +1,41 @@
+- name: .sh_aliases
+  template:
+    src: templates/sh_aliases.j2
+    dest: "{{ homedir }}/.sh_aliases"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
+- name: Create the .extra_env folder
+  file:
+    name: "{{ homedir }}/.extra_env"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
+- name: Create the .extra_aliases folder
+  file:
+    name: "{{ homedir }}/.extra_aliases"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
+- name: Create the .extra-paths folder
+  file:
+    name: "{{ homedir }}/.extra_paths"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
+- name: Create the .extra_rc director
+  file:
+    name: "{{ homedir }}/.extra_rc"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
+- name: Path to $HOME/.local/bin
+  copy:
+    src: files/local
+    dest: "{{ homedir }}/.extra_paths/local"
+    owner: "{{ user }}"
+    group: "{{ group }}"

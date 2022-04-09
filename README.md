@@ -21,3 +21,7 @@ Sets up the `.sh_paths` files and dumps `pathvar`, after other roles have had a 
 ### packages
 
 Various OS packages.
+
+### shell
+
+Basic shell setup.
