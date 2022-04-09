@@ -44,11 +44,15 @@ Support for AWS CLI.
 
 ### desktop
 
-Adjustments to various GUI appl (e.g. Gnome Terminal)
+> You must rename your Gnome Terminal Profile before this role will work
+
+![gnome-terminal](pictures/gnome-terminal.png)
+
+Adjustments to various GUI appl (e.g. Gnome Terminal).
 
 ### rust
 
-Support for the Rust language (also needed for `shell_enhancements`)
+Support for the Rust language (also needed for `shell_enhancements`).
 
 ### shell_enhancements
 
