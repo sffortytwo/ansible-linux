@@ -1,0 +1,54 @@
+[user]
+	name = Jeffrey Johnson
+	email = sffortytwo@gmail.com
+[color]
+	ui = true
+[alias]
+	dc = diff --color
+	g1 = log --pretty=oneline
+	st = status
+	co = checkout
+	cat = cat-file
+	ls = !git status --porcelain
+	logd = log --graph --decorate --abbrev-commit --all --source --name-status
+	lol = log --pretty=oneline --abbrev-commit --graph --decorate
+	alias = !git config --get-regexp alias | sed 's/^alias\\.//' | sed 's/ /\\t\\t/' | sort
+	aliases = !git config --get-regexp alias | sed 's/^alias\\.//' | sed 's/ /\\t\\t/' | sort
+	tags = !~/bin/git-tags.rb
+	br = branch
+	bvv = branch -vv
+	bavv = branch -avv
+	brvv = branch -rvv
+[core]
+	excludesfile = {{ homedir }}/.gitignore
+	pager = less -F -X
+        trustctime = false
+        editor = /usr/bin/vim
+[push]
+	default = current
+[init]
+	templatedir = {{ homedir }}/.git-templates
+	defaultBranch = main
+[branch]
+        autosetuprebase = always
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+
+[delta]
+	plus-style = "syntax #012800"
+	minus-style = "syntax #340001"
+	syntax-theme = Monokai Extended
+	navigate = true
+
+[interactive]
+	diffFilter = delta --color-only
+

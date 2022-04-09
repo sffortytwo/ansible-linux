@@ -1,0 +1,17 @@
+*~
+.editorconfig
+.vscode
+*.code-workspace
+.DS_Store
+Pipfile*
+TEMP.md
+xld-state
+terraform.tfvars
+LOVE-*
+tmp*
+.rakeTasks
+*.bak
+*.bak.*
+.rubocop.yml
+.idea/
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+$HOME/.git-functions/hooks/commit-msg.sh $@
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
