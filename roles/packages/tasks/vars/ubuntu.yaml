@@ -1,0 +1,11 @@
+packages:
+- aptitude
+- vim
+- curl
+- tree
+- gnome-tweaks
+- python3-psutil # For dconf
+- python-is-python3
+- pip
+
+pip_packages: []

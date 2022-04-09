@@ -1,0 +1,15 @@
+- name: Include vars
+  include_vars:
+    file: vars/{{ ansible_distribution|lower }}.yaml
+    name: var
+
+- name: Install basic packages
+  package:
+    name: "{{ var['packages'] }}"
+    state: present
+
+- name: Install Python packages
+  pip:
+    name: "{{ var['pip_packages'] }}"
+    state: present
+    executable: pip3

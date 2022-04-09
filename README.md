@@ -17,3 +17,7 @@ Sets up `pathvar`, which is used by `end`.
 > Always comes last
 
 Sets up the `.sh_paths` files and dumps `pathvar`, after other roles have had a chance to add to it.
+
+### packages
+
+Various OS packages.
