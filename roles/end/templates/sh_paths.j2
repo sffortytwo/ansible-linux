@@ -30,8 +30,8 @@ PATH=$BACKUP_PATH
 
 export PATH
 
-if [ -f $HOME/.extra_paths ]; then
-    source $HOME/.extra_paths
+if [ -d $HOME/.extra_paths ]; then
+    find $HOME/.extra_paths -type f | while read fn; do source $fn; done
 fi
 
 # ##############################################################################
