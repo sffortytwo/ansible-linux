@@ -1,6 +1,6 @@
 - name: Necessary casks for ohmyzsh
   homebrew:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: present
-  become_user: "{{ user }}"
-  with_items: "{{ var['packages'] }}"
+  become_user: '{{ user }}'
+  with_items: '{{ var["packages"] }}'

@@ -1,10 +1,10 @@
 - name: Cargo Packages
   ansible.builtin.command:
-    cmd: "{{ homedir }}/.cargo/bin/cargo install {{ item.name }}"
-    chdir: "{{ homedir }}"
+    cmd: '{{ homedir }}/.cargo/bin/cargo install {{ item.name }}'
+    chdir: '{{ homedir }}'
     warn: false
     creates: '{{ homedir }}/.cargo/bin/{{ item.file }}'
-  become_user: "{{ user }}"
+  become_user: '{{ user }}'
   with_items:
   - { name: bat,       file: bat }
   - { name: exa,       file: exa }
@@ -17,6 +17,6 @@
 - name: Alias .extra_aliases/exa
   copy:
     src: files/aliases/exa
-    dest: "{{ homedir }}/.extra_aliases/exa"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: '{{ homedir }}/.extra_aliases/exa'
+    owner: '{{ user }}'
+    group: '{{ group }}'

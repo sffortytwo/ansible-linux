@@ -5,11 +5,11 @@
 
 - name: Install basic packages
   package:
-    name: "{{ var['packages'] }}"
+    name: '{{ var["packages"] }}'
     state: present
 
 - name: Install Python packages
   pip:
-    name: "{{ var['pip_packages'] }}"
+    name: '{{ var["pip_packages"] }}'
     state: present
     executable: pip3

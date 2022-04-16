@@ -1,12 +1,12 @@
 - name: discover-terminal
-  shell: "dconf list '/org/gnome/terminal/legacy/profiles:/' | head -n1 | sed 's#/$##'"
+  shell: 'dconf list "/org/gnome/terminal/legacy/profiles:/" | head -n1 | sed "s#/$##"'
   register: terminal_profile
   become_user: jeff
 
 - name: dconf for Gnome
   dconf:
-    key: "{{ item['key'] }}"
-    value: "{{ item['value'] }}"
+    key: '{{ item["key"] }}'
+    value: '{{ item["value"] }}'
     state: present
   with_items:
   - { 'key': '/org/gnome/desktop/session/idle-delay', value: 'uint32 0' }
@@ -45,4 +45,4 @@
   - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/visible-name', value: "'Terminal'" }
   - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/audible-bell', value: 'false' }
   - { 'key': '/org/gnome/terminal/legacy/keybindings/preferences', value: "'<Primary>comma'" }
-  become_user: "{{ user }}"
+  become_user: '{{ user }}'
