@@ -3,18 +3,15 @@
     file: vars/{{ ansible_distribution|lower }}.yaml
     name: var
 
-- name: Necessary packages for ohmyzsh
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ var['packages'] }}"
+- include_tasks: '{{ ansible_distribution|lower }}.yaml'
 
 - name: Change user shell
-  shell: "chsh -s /usr/bin/zsh {{ user }}"
+  shell: 'chsh -s $(which zsh) {{ user }}'
+  when: ansible_distribution|lower != 'macosx'
 
 - name: Is ohmyzsh already installed
   stat:
-    path: "{{ homedir }}/.oh-my-zsh/"
+    path: '{{ homedir }}/.oh-my-zsh/'
   register: ohmyzsh_stat
 
 - name: One-time setup of zsh
@@ -26,49 +23,48 @@
       mode: 0755
 
   - name: Install ohmyzsh
-    shell: "/tmp/ohmyzsh.sh --unattended"
-    become_user: "{{ user }}"
+    shell: '/tmp/ohmyzsh.sh --unattended'
+    become_user: '{{ user }}'
   when: ohmyzsh_stat.stat.exists == False
 
 - name: Configure ohmyzsh
   template:
     src: templates/zshrc.j2
-    dest: "{{ homedir }}/.zshrc"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: '{{ homedir }}/.zshrc'
+    owner: '{{ user }}'
+    group: '{{ group }}'
 
 - name: Configure zsh environment
   copy:
     src: files/zsh_env
-    dest: "{{ homedir }}/.zsh_env"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: '{{ homedir }}/.extra_env/zsh_env'
+    owner: '{{ user }}'
+    group: '{{ group }}'
 
 - name: Custom values
   copy:
     src: files/config.zsh
-    dest: "{{ homedir }}/.oh-my-zsh/custom/config.zsh"
+    dest: '{{ homedir }}/.oh-my-zsh/custom/config.zsh'
 
+# -----------------------------------------------------------------------------
 # Plugins
+# -----------------------------------------------------------------------------
 
 - name: Install zsh-autocomplete
-  git:
+  ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
-    dest: "{{ homedir }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-
-# - name: configure zsh-autocomplete
-#   copy:
-#     src: files/zsh-autocomplete.zsh
-#     dest: "{{ homedir }}/.oh-my-zsh/custom/zsh-autocomplete.zsh"
-#     owner: "{{ user }}"
-#     group: "{{ group }}"
-#     mode: "0644"
+    dest: '{{ homedir }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
+    update: true
+  become: true
+  become_user: '{{ user }}'
 
 - name: oh-my-zsh-syntax-highlighting
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: "{{ homedir }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-    update: yes
+    dest: '{{ homedir }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
+    update: true
+  become: true
+  become_user: '{{ user }}'
 
 # -----------------------------------------------------------------------------
 # PowerLevel 10K
@@ -76,12 +72,15 @@
 - name: Install powerlevel10k
   ansible.builtin.git:
     repo: https://github.com/romkatv/powerlevel10k.git
-    dest: "{{ homedir }}/.oh-my-zsh/custom/themes/powerlevel10k"
+    dest: '{{ homedir }}/.oh-my-zsh/custom/themes/powerlevel10k'
+    update: true
+  become: true
+  become_user: '{{ user }}'
 
 - name: Configure powerlevel10k
   copy:
     src: files/p10k.zsh
-    dest: "{{ homedir }}/.p10k.zsh"
-    owner: "{{ user }}"
-    group: "{{ group }}"
-    mode: "0644"
+    dest: '{{ homedir }}/.p10k.zsh'
+    owner: '{{ user }}'
+    group: '{{ group }}'
+    mode: '0644'
