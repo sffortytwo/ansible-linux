@@ -3,7 +3,7 @@
     cmd: "{{ item }}"
     warn: false
     creates: "{{ homedir }}/.rustup"
-  become: yes
+  become: true
   become_user: "{{ user }}"
   with_items:
   - "wget -O /tmp/rustup.sh https://sh.rustup.rs"

@@ -33,7 +33,7 @@
   synchronize:
     src: files/git-functions/
     dest: "{{ homedir }}/.git-functions/"
-    recursive: yes
+    recursive: true
     rsync_opts:
     - "--chown={{ user }}:{{ group }}"
 
@@ -51,6 +51,6 @@
   synchronize:
     src: files/git-templates/
     dest: "{{ homedir }}/.git-templates/"
-    recursive: yes
+    recursive: true
     rsync_opts:
     - "--chown={{ user }}:{{ group }}"

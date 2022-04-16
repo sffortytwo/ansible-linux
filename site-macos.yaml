@@ -1,6 +1,6 @@
 - hosts: [macos]
   remote_user: jjohnson
-  become: yes
+  become: true
   connection: local
   roles:
   - begin
