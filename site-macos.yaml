@@ -1,0 +1,14 @@
+- hosts: [macos]
+  remote_user: jjohnson
+  become: yes
+  connection: local
+  roles:
+  - begin
+  - shell
+  - macos
+  - fonts
+  - ohmyzsh
+  - rust
+  - shell_enhancements
+  - gitconfig
+  - end
