@@ -1,5 +1,5 @@
 - name: discover-terminal
-  shell: 'dconf list "/org/gnome/terminal/legacy/profiles:/" | head -n1 | sed "s#/$##"'
+  shell: "dconf list '/org/gnome/terminal/legacy/profiles:/' | head -n1 | sed 's#/$##'"
   register: terminal_profile
   become_user: jeff
 
