@@ -2,6 +2,8 @@
   package:
     name: git
     state: present
+  become: '{{ ansible_distribution|lower == "macosx" }}'
+  become_user: '{{ user }}'
 
 - name: .gitignore
   copy:
