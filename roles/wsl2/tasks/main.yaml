@@ -2,12 +2,12 @@
   copy:
     src: files/display
     dest: /home/jeff/.extra_env/display
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    owner: '{{ user }}'
+    group: '{{ group }}'
 
 - name: Start VPNKit
   copy:
     src: files/vpnkit
     dest: /home/jeff/.extra_rc/vpnkit
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    owner: '{{ user }}'
+    group: '{{ group }}'

@@ -1,16 +1,13 @@
-- hosts: [wsl2]
-  remote_user: jeff
+- hosts: [macos]
+  remote_user: jjohnson
   become: true
   connection: local
   roles:
   - begin
-  - packages
   - shell
+  - macos
   - fonts
-  - wsl2
   - ohmyzsh
-  - aws
-  - desktop
   - rust
   - shell_enhancements
   - gitconfig

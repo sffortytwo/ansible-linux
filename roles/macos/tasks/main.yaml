@@ -1,0 +1,7 @@
+- name: Enable fingerprint sudo
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/sudo
+    insertbefore: '^auth       sufficient     pam_smartcard.so'
+    line: 'auth       sufficient     pam_tid.so'
+  become: true
+  when: ansible_facts['hostname'] | lower == 'ballard'

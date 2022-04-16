@@ -1,13 +1,13 @@
 - name: Create fonts directory
   file:
-    name: "{{ homedir }}/.fonts"
+    name: '{{ homedir }}/.fonts'
     state: directory
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    owner: '{{ user }}'
+    group: '{{ group }}'
 
 - name: Install fonts
   copy:
     src: files/
-    dest: "{{ homedir }}/.fonts"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: '{{ homedir }}/.fonts'
+    owner: '{{ user }}'
+    group: '{{ group }}'

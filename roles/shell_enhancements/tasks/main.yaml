@@ -1,21 +1,22 @@
 - name: Cargo Packages
   ansible.builtin.command:
-    cmd: "{{ homedir }}/.cargo/bin/cargo install {{ item }}"
-    chdir: "{{ homedir }}"
+    cmd: '{{ homedir }}/.cargo/bin/cargo install {{ item.name }}'
+    chdir: '{{ homedir }}'
     warn: false
-  become_user: "{{ user }}"
+    creates: '{{ homedir }}/.cargo/bin/{{ item.file }}'
+  become_user: '{{ user }}'
   with_items:
-  - bat
-  - exa
-  - broot
-  - fd-find
-  - git-delta
-  - ripgrep
-  - sd
+  - { name: bat,       file: bat }
+  - { name: exa,       file: exa }
+  - { name: broot,     file: broot }
+  - { name: fd-find,   file: fd }
+  - { name: git-delta, file: delta }
+  - { name: ripgrep,   file: rg }
+  - { name: sd,        file: sd }
 
 - name: Alias .extra_aliases/exa
   copy:
     src: files/aliases/exa
-    dest: "{{ homedir }}/.extra_aliases/exa"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: '{{ homedir }}/.extra_aliases/exa'
+    owner: '{{ user }}'
+    group: '{{ group }}'

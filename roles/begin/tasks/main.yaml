@@ -1,3 +1,3 @@
 - name: Set path for $HOME/bin
   set_fact:
-    pathvar: "{{ pathvar|default({}) | combine({ '$HOME/bin': ['PATH=$PATH:$HOME/bin'] }) }}"
+    pathvar: '{{ pathvar|default({}) | combine({ "$HOME/bin": ["PATH=$PATH:$HOME/bin"] }) }}'

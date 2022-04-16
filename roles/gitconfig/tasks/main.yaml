@@ -2,53 +2,55 @@
   package:
     name: git
     state: present
+  become: '{{ ansible_distribution|lower == "macosx" }}'
+  become_user: '{{ user }}'
 
 - name: .gitignore
   copy:
     src: files/gitignore
-    dest: "{{ homedir }}/.gitignore"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: '{{ homedir }}/.gitignore'
+    owner: '{{ user }}'
+    group: '{{ group }}'
 
 - name: .gitconfig
   template:
     src: gitconfig.j2
-    dest: "{{ homedir }}/.gitconfig"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: '{{ homedir }}/.gitconfig'
+    owner: '{{ user }}'
+    group: '{{ group }}'
 
 # ------------------------------------------------------------------------------
 # $HOME/.git-functions
 # ------------------------------------------------------------------------------
 - name: git-functions directory
   file:
-    name: "{{ homedir }}/.git-functions"
+    name: '{{ homedir }}/.git-functions'
     state: directory
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    owner: '{{ user }}'
+    group: '{{ group }}'
 
 - name: git-functions files
   synchronize:
     src: files/git-functions/
-    dest: "{{ homedir }}/.git-functions/"
-    recursive: yes
+    dest: '{{ homedir }}/.git-functions/'
+    recursive: true
     rsync_opts:
-    - "--chown={{ user }}:{{ group }}"
+    - '--chown={{ user }}:{{ group }}'
 
 # ------------------------------------------------------------------------------
 # $HOME/.git-templates
 # ------------------------------------------------------------------------------
 - name: git-templates directory
   file:
-    name: "{{ homedir }}/.git-templates"
+    name: '{{ homedir }}/.git-templates'
     state: directory
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    owner: '{{ user }}'
+    group: '{{ group }}'
 
 - name: git-templates files
   synchronize:
     src: files/git-templates/
-    dest: "{{ homedir }}/.git-templates/"
-    recursive: yes
+    dest: '{{ homedir }}/.git-templates/'
+    recursive: true
     rsync_opts:
-    - "--chown={{ user }}:{{ group }}"
+    - '--chown={{ user }}:{{ group }}'
