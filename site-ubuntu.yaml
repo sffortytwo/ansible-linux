@@ -1,0 +1,16 @@
+- hosts: [ubuntu]
+  remote_user: jeff
+  become: true
+  connection: local
+  roles:
+  - begin
+  - packages
+  - vmware
+  - shell
+  - fonts
+  - ohmyzsh
+  - desktop
+  - rust
+  - shell_enhancements
+  - gitconfig
+  - end
