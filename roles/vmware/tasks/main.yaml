@@ -1,0 +1,29 @@
+- name: VMware host mount
+  block:
+  - name: /mnt/hgfs directory
+    file:
+      name: /mnt/hgfs
+      state: directory
+
+  - name: mount VMware hgfs
+    lineinfile:
+      path: /etc/fstab
+      line: ".host:/		/mnt/hgfs	fuse.vmhgfs-fuse	auto,allow_other	0	0"
+
+  - name: install samba client
+    package:
+      name: samba-client
+      state: present
+
+  - name: minimum samba protocol
+    lineinfile:
+      path: /etc/samba/smb.conf
+      insertafter:  "^.*\\[global\\].*$"
+      line: "   client min protocol = SMB2"
+
+  - name: maximum samba protocol
+    lineinfile:
+      path: /etc/samba/smb.conf
+      insertafter:  "^.*\\[global\\].*$"
+      line: "   client max protocol = SMB3"
+  when: ansible_facts['virtualization_type'] == 'VMware'
