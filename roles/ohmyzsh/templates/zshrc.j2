@@ -129,3 +129,15 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export HOMEBREW_GITHUB_API_TOKEN={{ homebrew_github_token }}
+# Setup biometric access for 1Password
+OP_BIOMETRIC_UNLOCK_ENABLED=true
+
+if [[ -d $HOME/.local/bin ]]; then
+  export PATH=$HOME/.local/bin:$PATH
+fi
+
+if [[ -d /opt/homebrew/bin ]]; then
+  export PATH=/opt/homebrew/bin:$PATH
+fi
