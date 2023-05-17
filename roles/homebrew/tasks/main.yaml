@@ -1,0 +1,20 @@
+- name: Install Homebrew apps
+  become_user: '{{ user }}'
+  community.general.homebrew_cask:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - 1password
+  - firefox
+  - iterm2
+  - karabiner-elements
+  - meld
+  - microsoft-edge
+  - obsidian
+  - pycharm
+  - setapp
+  - spotify
+  - switchresx
+  - typora
+  - visual-studio-code
+  - vmware-fusion

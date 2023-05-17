@@ -54,3 +54,9 @@
     recursive: true
     rsync_opts:
     - '--chown={{ user }}:{{ group }}'
+
+- name: make functions executable
+  file:
+    dest: '{{ homedir }}/.git-templates/'
+    mode: 0775
+    recurse: true

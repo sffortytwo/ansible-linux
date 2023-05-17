@@ -1,7 +1,6 @@
 - name: Install Rust
   command:
     cmd: '{{ item }}'
-    warn: false
     creates: '{{ homedir }}/.rustup'
   become: true
   become_user: '{{ user }}'

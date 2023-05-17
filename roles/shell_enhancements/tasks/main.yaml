@@ -2,7 +2,6 @@
   ansible.builtin.command:
     cmd: '{{ homedir }}/.cargo/bin/cargo install {{ item.name }}'
     chdir: '{{ homedir }}'
-    warn: false
     creates: '{{ homedir }}/.cargo/bin/{{ item.file }}'
   become_user: '{{ user }}'
   with_items:

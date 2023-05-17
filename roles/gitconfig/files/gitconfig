@@ -20,14 +20,14 @@
 	bavv = branch -avv
 	brvv = branch -rvv
 [core]
-	excludesfile = /Users/jjohnson/.gitignore
+	excludesfile = /Users/{{ user }}/.gitignore
 	pager = less -F -X
         trustctime = false
         editor = /usr/bin/vim
 [push]
 	default = current
 [init]
-	templatedir = /Users/jjohnson/.git-templates
+	templatedir = /Users/{{ user }}/.git-templates
 	defaultBranch = main
 [branch]
         autosetuprebase = always

@@ -4,4 +4,4 @@
     insertbefore: '^auth       sufficient     pam_smartcard.so'
     line: 'auth       sufficient     pam_tid.so'
   become: true
-  when: ansible_facts['hostname'] | lower == 'ballard'
+  when: fingerprint == true

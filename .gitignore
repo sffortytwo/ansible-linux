@@ -1,2 +1,4 @@
 *.retry
 .venv/
+roles/fonts/files/Comic*
+host_vars/
