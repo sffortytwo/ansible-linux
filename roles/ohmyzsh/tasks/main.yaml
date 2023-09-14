@@ -1,9 +1,9 @@
-- name: vars
-  include_vars:
-    file: vars/{{ ansible_distribution|lower }}.yaml
-    name: var
-
-- include_tasks: '{{ ansible_distribution|lower }}.yaml'
+- name: Necessary packages for ohmyzsh
+  homebrew:
+    name: '{{ item }}'
+    state: present
+  become_user: '{{ user }}'
+  with_items: '{{ os_defaults[ansible_distribution].ohmyzsh.packages }}'
 
 - name: Change user shell
   shell: 'chsh -s $(which zsh) {{ user }}'

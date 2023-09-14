@@ -1,16 +1,16 @@
-- hosts: [ubuntu]
+- hosts: [pop!_os]
   remote_user: jeff
   become: true
-  connection: local
+  # connection: local
   roles:
-  - begin
-  - packages
-  - vmware
-  - shell
-  - fonts
-  - ohmyzsh
-  - desktop
-  - rust
-  - shell_enhancements
-  - gitconfig
-  - end
+    - begin
+    - packages
+    # - vmware
+    - shell
+    - fonts
+    - ohmyzsh
+    - desktop
+    - rust
+    - shell_enhancements
+    - gitconfig
+    - end

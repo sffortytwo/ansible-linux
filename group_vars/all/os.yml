@@ -1,0 +1,46 @@
+os_defaults:
+  MacOSX:
+    ohmyzsh:
+      packages: []
+    packages:
+      packages: []
+
+  Ubuntu:
+    desktop:
+      gtk_theme: 'Yaru'
+    ohmyzsh:
+      packages:
+      - 'fonts-powerline'
+      - 'ttf-ancient-fonts'
+      - 'zsh'
+      - 'git'
+    packages:
+      packages:
+      - aptitude
+      - vim
+      - curl
+      - tree
+      - gnome-tweaks
+      - python3-psutil # For dconf
+      - python-is-python3
+      - pip
+
+  Pop!_OS:
+    desktop:
+      gtk_theme: 'Pop'
+    ohmyzsh:
+      packages:
+      - 'fonts-powerline'
+      - 'ttf-ancient-fonts'
+      - 'zsh'
+      - 'git'
+    packages:
+      packages:
+      - aptitude
+      - vim
+      - curl
+      - tree
+      - gnome-tweaks
+      - python3-psutil # For dconf
+      - python-is-python3
+      - pip

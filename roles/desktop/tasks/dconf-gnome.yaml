@@ -1,7 +1,7 @@
 - name: discover-terminal
   shell: "dconf list '/org/gnome/terminal/legacy/profiles:/' | head -n1 | sed 's#/$##'"
   register: terminal_profile
-  become_user: jeff
+  become_user: "{{ user }}"
 
 - name: dconf for Gnome
   dconf:
@@ -9,40 +9,110 @@
     value: '{{ item["value"] }}'
     state: present
   with_items:
-  - { 'key': '/org/gnome/desktop/session/idle-delay', value: 'uint32 0' }
-  - { 'key': '/org/gnome/desktop/screensaver/lock-enabled', value: 'false' }
-  - { 'key': '/org/gnome/desktop/wm/preferences/button-layout', value: "'close,minimize:'" }
-  - { 'key': '/org/gnome/terminal/legacy/default-show-menubar', value: 'false' }
-  - { 'key': '/org/gnome/terminal/legacy/theme-variant', value: "'light'" }
+    - { "key": "/org/gnome/desktop/session/idle-delay", value: "uint32 0" }
+    - { "key": "/org/gnome/desktop/screensaver/lock-enabled", value: "false" }
+    - {
+        "key": "/org/gnome/desktop/wm/preferences/button-layout",
+        value: "'close,minimize:'",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/default-show-menubar",
+        value: "false",
+      }
+    - { "key": "/org/gnome/terminal/legacy/theme-variant", value: "'light'" }
 
-  # Desktop background
-  - { 'key': '/org/gnome/desktop/background/color-shading-type', value: "'solid'" }
-  - { 'key': '/org/gnome/desktop/background/picture-options', value: "'zoom'" }
-  # - { 'key': '/org/gnome/desktop/background/picture-uri', value: "'file://{{ homedir }}/Pictures/Wallpapers/{{ ansible_local['custom']['general']['wallpaper'] }}'" }
-  - { 'key': '/org/gnome/desktop/background/primary-color', value: "'#425265'" }
-  - { 'key': '/org/gnome/desktop/background/secondary-color', value: "'#425265'" }
+    # Desktop background
+    - {
+        "key": "/org/gnome/desktop/background/color-shading-type",
+        value: "'solid'",
+      }
+    - {
+        "key": "/org/gnome/desktop/background/picture-options",
+        value: "'zoom'",
+      }
+    # - { 'key': '/org/gnome/desktop/background/picture-uri', value: "'file://{{ homedir }}/Pictures/Wallpapers/{{ ansible_local['custom']['general']['wallpaper'] }}'" }
+    - {
+        "key": "/org/gnome/desktop/background/primary-color",
+        value: "'#425265'",
+      }
+    - {
+        "key": "/org/gnome/desktop/background/secondary-color",
+        value: "'#425265'",
+      }
 
-  # Desktop interface
-  - { 'key': '/org/gnome/desktop/interface/gtk-theme', value: "'{{ var['gtk_theme'] }}'" }
-  - { 'key': '/org/gnome/mutter/center-new-windows', value: 'true' }
+    # Desktop interface
+    - {
+        "key": "/org/gnome/desktop/interface/gtk-theme",
+        value: "'{{ os_defaults[ansible_distribution].desktop.gtk_theme }}'",
+      }
+    - { "key": "/org/gnome/mutter/center-new-windows", value: "true" }
 
-  # Gnome terminal
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/default-size-columns', value: '160' }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/default-size-rows', value: '48' }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/scrollbar-policy', value: "'never'" }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/use-system-font', value: 'false' }
+    # Gnome terminal
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/default-size-columns",
+        value: "160",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/default-size-rows",
+        value: "48",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/cell-height-scale",
+        value: "1.3",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/scrollbar-policy",
+        value: "'never'",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/use-system-font",
+        value: "false",
+      }
 
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/use-theme-colors', value: 'false' }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/use-theme-transparency', value: 'false' }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/foreground-color', value: "'rgb(131,148,150)'" }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/background-color', value: "'rgb(0,43,54)'" }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/palette', value: "['rgb(7,54,66)','rgb(220,50,47)','rgb(133,153,0)','rgb(181,137,0)','rgb(38,139,210)','rgb(211,54,130)','rgb(42,161,152)','rgb(238,232,213)','rgb(7,54,66)','rgb(220,50,47)','rgb(133,153,0)','rgb(181,137,0)','rgb(38,139,210)','rgb(211,54,130)','rgb(42,161,152)','rgb(238,232,213)']" }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/use-theme-colors",
+        value: "false",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/use-theme-transparency",
+        value: "false",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/foreground-color",
+        value: "'rgb(131,148,150)'",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/background-color",
+        value: "'rgb(0,43,54)'",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/palette",
+        value: "['rgb(7,54,66)','rgb(220,50,47)','rgb(133,153,0)','rgb(181,137,0)','rgb(38,139,210)','rgb(211,54,130)','rgb(42,161,152)','rgb(238,232,213)','rgb(7,54,66)','rgb(220,50,47)','rgb(133,153,0)','rgb(181,137,0)','rgb(38,139,210)','rgb(211,54,130)','rgb(42,161,152)','rgb(238,232,213)']",
+      }
 
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/bold-color-same-as-fg', value: 'false' }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/bold-color', value: "'rgb(238,232,213)'" }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/bold-color-same-as-fg",
+        value: "false",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/bold-color",
+        value: "'rgb(238,232,213)'",
+      }
 
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/font', value: "'MesloLGS NF 12'" }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/visible-name', value: "'Terminal'" }
-  - { 'key': '/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/audible-bell', value: 'false' }
-  - { 'key': '/org/gnome/terminal/legacy/keybindings/preferences', value: "'<Primary>comma'" }
-  become_user: '{{ user }}'
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/font",
+        value: "'ComicCodeLigatures Nerd Font 12'",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/visible-name",
+        value: "'Terminal'",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/profiles:/{{ terminal_profile.stdout }}/audible-bell",
+        value: "false",
+      }
+    - {
+        "key": "/org/gnome/terminal/legacy/keybindings/preferences",
+        value: "'<Primary>comma'",
+      }
+  become_user: "{{ user }}"

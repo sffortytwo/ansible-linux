@@ -60,3 +60,9 @@
     dest: '{{ homedir }}/.git-templates/'
     mode: 0775
     recurse: true
+
+- name: make functions executable
+  file:
+    dest: '{{ homedir }}/.git-functions/'
+    mode: 0775
+    recurse: true

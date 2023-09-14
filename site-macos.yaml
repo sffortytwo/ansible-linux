@@ -1,12 +1,14 @@
-- hosts: [macos]
-  remote_user: jjohnson
+- hosts: [ballard]
+  remote_user: jeff
   become: true
   connection: local
   roles:
+  # - debug
   - begin
   - shell
   - macos
   - fonts
+  - gitconfig
   - ohmyzsh
   - rust
   - shell_enhancements
