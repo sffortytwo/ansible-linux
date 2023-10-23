@@ -84,3 +84,10 @@
     dest: '{{ homedir }}/.ssh/config-gitlab-jeff'
     owner: '{{ user }}'
     group: '{{ group }}'
+
+- name: Alias .extra_aliases/git
+  copy:
+    src: files/aliases/git
+    dest: '{{ homedir }}/.extra_aliases/git'
+    owner: '{{ user }}'
+    group: '{{ group }}'
