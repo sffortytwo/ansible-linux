@@ -1,6 +1,6 @@
 [user]
-	name = Jeffrey Johnson
-	email = sffortytwo@gmail.com
+	name = {{ git_name }}
+	email = {{ git_email }}
 [color]
 	ui = true
 [alias]
@@ -51,4 +51,3 @@
 
 [interactive]
 	diffFilter = delta --color-only
-

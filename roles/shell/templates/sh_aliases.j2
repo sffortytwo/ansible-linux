@@ -53,7 +53,8 @@ alias info-git-tag-show='git show'
 alias info-git-tag-push='git push --follow-tags'
 alias info-git-tag-delete='git tag -d'
 alias info-git-tag-delete-push='f(){ git push origin :refs/tags/$1; unset -f f; }; f'
-alias info-git-config-sshcommand='git config core.sshCommand "ssh -F ~/.ssh/config-github-jeff"'
+alias info-git-config-sshcommand-github='git config core.sshCommand "ssh -F ~/.ssh/config-github-jeff"'
+alias info-git-config-sshcommand-gitlab='git config core.sshCommand "ssh -F ~/.ssh/config-gitlab-jeff"'
 info-git-commits-for-branch() {
     if [ $# -gt 2 ] || [ "$1" = "--help" ]; then
       echo "usage: $0 [BRANCH] [--pretty]"

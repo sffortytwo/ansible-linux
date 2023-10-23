@@ -24,6 +24,7 @@ os_defaults:
       - python3-psutil # For dconf
       - python-is-python3
       - pip
+      pip_packages: []
 
   Pop!_OS:
     desktop:
@@ -44,3 +45,4 @@ os_defaults:
       - python3-psutil # For dconf
       - python-is-python3
       - pip
+      pip_packages: []

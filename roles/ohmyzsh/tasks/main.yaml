@@ -1,9 +1,18 @@
-- name: Necessary packages for ohmyzsh
+- name: Necessary MacOSX packages for ohmyzsh
   homebrew:
     name: '{{ item }}'
     state: present
   become_user: '{{ user }}'
   with_items: '{{ os_defaults[ansible_distribution].ohmyzsh.packages }}'
+  when: ansible_distribution == 'MacOSX'
+
+- name: Necessary Ubuntu packages for ohmyzsh
+  package:
+    name: '{{ item }}'
+    state: present
+  become_user: 'root'
+  with_items: '{{ os_defaults[ansible_distribution].ohmyzsh.packages }}'
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Change user shell
   shell: 'chsh -s $(which zsh) {{ user }}'

@@ -66,3 +66,21 @@
     dest: '{{ homedir }}/.git-functions/'
     mode: 0775
     recurse: true
+
+# ------------------------------------------------------------------------------
+# $HOME/.ssh files
+# ------------------------------------------------------------------------------
+
+- name: config-github-jeff
+  ansible.builtin.copy:
+    src: ssh/config-github-jeff
+    dest: '{{ homedir }}/.ssh/config-github-jeff'
+    owner: '{{ user }}'
+    group: '{{ group }}'
+
+- name: config-gitlab-jeff
+  ansible.builtin.copy:
+    src: ssh/config-gitlab-jeff
+    dest: '{{ homedir }}/.ssh/config-gitlab-jeff'
+    owner: '{{ user }}'
+    group: '{{ group }}'
