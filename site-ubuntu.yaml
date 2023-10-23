@@ -1,4 +1,4 @@
-- hosts: [pop!_os]
+- hosts: [jeff-ubuntu2204]
   remote_user: jeff
   become: true
   # connection: local
